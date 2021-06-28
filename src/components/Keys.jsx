@@ -40,7 +40,8 @@ class Keys extends Component {
                     <button id="b-element" name="x" onClick={e => this.props.onClick(e.target.name)}>x</button><br />
                 </div>
                 <div className="draw">
-                    <button id="b-element-draw" name="Draw" onClick={e => this.props.onClick(e.target.name)}>Draw Graph</button>
+                    <button id="b-element-draw" name="Draw" onClick={e => this.props.onClick(e.target.name)}>Graph</button>
+                    <button id="b-element-draw" name="Hide" onClick={e => this.props.onClick(e.target.name)}>Hide Graph</button>
                 </div>
             </>
         );

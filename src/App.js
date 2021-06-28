@@ -2,14 +2,25 @@ import React, { Component } from 'react';
 import './App.css';
 import Result from './components/Result';
 import Keys from "./components/Keys";
+import Graph from './components/Graph';
 import { checkBrackets } from './utils/utils'
+import { create, all } from 'mathjs'
+
+const config = {
+}
+
+const math = create(all, config)
 
 class App extends Component {
   constructor() {
     super();
 
     this.state = {
-      result: ""
+      result: "",
+      showGraph: false,
+      labels : [],
+      results: [],
+      completeString: "" 
     }
   }
 
@@ -26,6 +37,12 @@ class App extends Component {
     else if (button === "Draw") {
       this.handleDraw()
     }
+    else if (button === "Hide") {
+      this.setState({
+        showGraph: false,
+        result: ''
+      })
+    }
     else {
       this.setState({
         result: this.state.result + button
@@ -36,14 +53,39 @@ class App extends Component {
   handleDraw = () => {
     const { result } = this.state
     let completeString = `f(x)=${result}`
+    if (result.length === 0) {
+      alert('Please enter a valid function to be drawn.')
+    }
 
     // Check paranthesis of the function passed
     if (!checkBrackets(result)) {
       alert('The function provided has missing paranthesis.')
     }
 
+    console.log(result)
+    this.generateGraphDataAndLabels(result)
+
+    if (result.length > 0) {
+      this.setState({
+        result: completeString,
+        showGraph: true,
+        completeString
+      })
+    }
+  }
+
+  generateGraphDataAndLabels=(eq)=> {
+    const parser = math.parser()
+    const labels = []
+    const results = []
+    for(let i =0; i < 20; i++){
+      labels.push(i)
+      parser.set('x', i)
+      results.push(parser.evaluate(eq))
+    }
     this.setState({
-      result: completeString
+      labels,
+      results
     })
   }
 
@@ -80,6 +122,7 @@ class App extends Component {
         <div className="calculator-body">
           <Result result={this.state.result} />
           <Keys onClick={this.onClick} />
+          <Graph showGraph={this.state.showGraph} labels={this.state.labels} results={this.state.results} func={this.state.completeString}></Graph>
         </div>
       </div>
     );

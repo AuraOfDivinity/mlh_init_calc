@@ -56,12 +56,17 @@ button {
 }
 
 #b-element-draw{
-  width: 95%;
+  width: 45.5%;
   height: 60px;
   font-size: 30px;
   border-radius: 5px;
   padding: 5px;
   margin: 5px;
   font-family: 'Mali', cursive;
+}
+
+.graph-container{
+  height: 300px;
+  background-color: #bbb;
 }
 
