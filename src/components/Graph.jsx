@@ -5,8 +5,6 @@ import { Line } from 'react-chartjs-2';
 export default class Graph extends Component {
     render() {
         const {labels, results} = this.props
-        console.log(this.props.label,'labels' )
-        console.log(this.props.results, 'reselts')
         const data = {
             labels: labels,
             datasets: [

@@ -62,7 +62,6 @@ class App extends Component {
       alert('The function provided has missing paranthesis.')
     }
 
-    console.log(result)
     this.generateGraphDataAndLabels(result)
 
     if (result.length > 0) {
