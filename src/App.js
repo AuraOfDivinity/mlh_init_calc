@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import Result from './components/Result';
 import Keys from "./components/Keys";
+import { checkBrackets } from './utils/utils'
 
 class App extends Component {
   constructor() {
@@ -35,11 +36,15 @@ class App extends Component {
   handleDraw = () => {
     const { result } = this.state
     let completeString = `f(x)=${result}`
+
+    // Check paranthesis of the function passed
+    if (!checkBrackets(result)) {
+      alert('The function provided has missing paranthesis.')
+    }
+
     this.setState({
       result: completeString
     })
-
-    // Check paranthesis of the function passed
   }
 
 
