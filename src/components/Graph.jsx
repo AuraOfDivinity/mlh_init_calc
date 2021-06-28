@@ -3,10 +3,6 @@ import { Line } from 'react-chartjs-2';
 
 
 export default class Graph extends Component {
-    constructor(props) {
-        super(props);
-    }
-
     render() {
         const {labels, results} = this.props
         console.log(this.props.label,'labels' )
